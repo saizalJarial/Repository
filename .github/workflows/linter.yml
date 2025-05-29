@@ -1,1 +1,19 @@
+name: Linter
+on: [push]
 
+permissions:
+  contents: read
+  statuses: write
+
+jobs:
+  linter:
+    name: Lint Code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4 
+      - name: Run Linter
+        uses: github/linter@v4
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
